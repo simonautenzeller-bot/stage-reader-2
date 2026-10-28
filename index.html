@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="de" data-theme="eink">
+<head>
+<meta charset="UTF-8">
+<script>
+  try { var t = localStorage.getItem('sr2.theme'); if (t === 'light' || t === 'dark' || t === 'eink') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stage Reader</title>
+<meta name="description" content="Lokaler Offline-Reader für PDF-Noten, Guitar-Pro-Dateien und Setlisten – optimiert für E-Ink.">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Stage Reader">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app"><p style="padding:24px">Stage Reader wird geladen …</p></div>
+<noscript><p style="padding:24px">Stage Reader benötigt JavaScript.</p></noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

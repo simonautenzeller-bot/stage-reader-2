@@ -1,0 +1,11 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Stage Reader">
+  <rect width="512" height="512" rx="72" fill="#000"/>
+  <rect x="72" y="31" width="368" height="450" rx="44" fill="#fff"/>
+  <g stroke="#000" stroke-width="9">
+    <path d="M108 154h296M108 190h296M108 226h296M108 262h296M108 298h296"/>
+  </g>
+  <ellipse cx="190" cy="372" rx="38" ry="27" fill="#000"/>
+  <ellipse cx="322" cy="372" rx="38" ry="27" fill="#000"/>
+  <path d="M228 372V150M360 372V134" stroke="#000" stroke-width="15"/>
+  <path d="M228 150L360 134" stroke="#000" stroke-width="31"/>
+</svg>

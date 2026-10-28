@@ -1,0 +1,145 @@
+/* Standard ist das E-Ink-Theme: reines Schwarz auf Weiß, kräftige Rahmen, keine Animationen,
+   keine Graustufen für Text. Gedacht für s/w-E-Ink-Tablets (z. B. BOOX). */
+:root {
+  --bg: #fff;
+  --fg: #000;
+  --muted: #000;
+  --line: #000;
+  --bw: 2px;
+  --on-accent: #fff;
+  --accent: #000;
+  --reader-bg: #fff;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  color-scheme: light;
+}
+:root[data-theme='light'] {
+  --bg: #f6f6f2;
+  --fg: #161616;
+  --muted: #4a4a4a;
+  --line: #555;
+  --bw: 1px;
+  --accent: #2f4a35;
+  --on-accent: #fff;
+  --reader-bg: #fff;
+}
+:root[data-theme='dark'] {
+  --bg: #111;
+  --fg: #eee;
+  --muted: #bbb;
+  --line: #888;
+  --bw: 1px;
+  --accent: #e8e8e8;
+  --on-accent: #111;
+  --reader-bg: #111;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--bg); color: var(--fg); }
+body.in-reader { overflow: hidden; }
+h1, h2, p { margin: 0; }
+h1 { font-size: 32px; }
+h2 { font-size: 21px; }
+small, .hint, .meta { color: var(--muted); }
+.hint { font-size: 16px; }
+
+/* ---------- Bedienelemente ---------- */
+.btn, button, select, input[type='search'], input[type='text'] { font: inherit; color: inherit; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 48px; min-width: 48px; padding: 8px 16px;
+  border: var(--bw) solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--fg);
+  text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.btn.primary, .btn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); font-weight: 700; }
+.btn.danger { font-weight: 700; text-decoration: underline; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+:root[data-theme='eink'] .btn { border-width: 2px; }
+:root[data-theme='eink'] .btn:disabled { opacity: 1; border-style: dashed; color: #000; }
+:focus-visible { outline: 4px solid var(--fg); outline-offset: 2px; }
+input[type='search'], input[type='text'], select {
+  min-height: 48px; padding: 8px 12px; background: var(--bg);
+  border: var(--bw) solid var(--line); border-radius: 6px;
+}
+input[type='checkbox'] { width: 28px; height: 28px; flex: none; accent-color: var(--fg); }
+
+/* ---------- Seiten ---------- */
+.page { max-width: 980px; margin: 0 auto; padding: 16px 16px 80px; }
+.app-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 3px solid var(--line); }
+.eyebrow { font: 700 13px ui-monospace, Consolas, monospace; letter-spacing: 0.08em; }
+.app-head nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.tab { display: inline-flex; align-items: center; min-height: 48px; padding: 4px 14px; color: inherit; text-decoration: none; border-bottom: 5px solid transparent; }
+.tab[aria-current='page'] { font-weight: 700; border-bottom-color: var(--fg); }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 0; }
+.toolbar input[type='search'] { flex: 1 1 220px; }
+.page-title { padding: 18px 0 6px; }
+.notice { border-left: 6px solid var(--fg); padding: 8px 12px; margin: 4px 0 12px; font-weight: 600; }
+.banner { border: var(--bw) solid var(--line); border-radius: 6px; padding: 12px 14px; margin-bottom: 8px; }
+.banner .toolbar { padding-bottom: 0; }
+
+.library { border-top: var(--bw) solid var(--line); }
+.song { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 16px 0; border-bottom: var(--bw) solid var(--line); }
+.song-main { flex: 1 1 260px; min-width: 0; }
+.song-main h2 { margin: 4px 0; overflow-wrap: anywhere; }
+.song-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { display: inline-block; border: var(--bw) solid var(--line); border-radius: 4px; padding: 0 8px; font: 700 13px ui-monospace, Consolas, monospace; }
+.empty { padding: 48px 0; text-align: center; display: grid; gap: 12px; justify-items: center; }
+.settings { display: grid; gap: 16px; padding-top: 8px; }
+.setting { display: grid; gap: 6px; }
+.menu-label { font-weight: 700; }
+.wrap { flex-wrap: wrap; }
+
+/* ---------- Dialoge ---------- */
+.dlg { width: min(520px, 92vw); border: 3px solid var(--fg); border-radius: 8px; padding: 20px; background: var(--bg); color: var(--fg); }
+.dlg::backdrop { background: rgba(255, 255, 255, 0.85); }
+:root[data-theme='dark'] .dlg::backdrop { background: rgba(0, 0, 0, 0.7); }
+.dlg form, .dlg > div { display: grid; gap: 14px; }
+.dlg-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+.dlg-choices { display: grid; gap: 10px; }
+.dlg-list { display: grid; gap: 4px; max-height: 50vh; overflow: auto; }
+.dlg input[type='text'] { width: 100%; }
+.check { display: flex; align-items: center; gap: 12px; min-height: 48px; }
+.check small { display: block; }
+
+/* ---------- Reader ---------- */
+.reader { display: flex; flex-direction: column; height: 100vh; height: 100dvh; background: var(--bg); }
+.rbar { display: flex; align-items: center; gap: 10px; min-height: 60px; padding: 6px 10px; border-bottom: 3px solid var(--line); background: var(--bg); }
+.rtitle { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 19px; }
+.rpos { font: 700 16px ui-monospace, Consolas, monospace; white-space: nowrap; }
+.rstage { position: relative; flex: 1; min-height: 0; }
+.rview { position: absolute; inset: 0; overflow: auto; background: var(--reader-bg); color: #000; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; outline: none; }
+.tap-hint { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; pointer-events: none; font-size: 36px; line-height: 1; color: #000; opacity: 0.3; }
+:root[data-theme='dark'] .tap-hint { color: #fff; }
+.tap-hint.left { left: 4px; }
+.tap-hint.right { right: 4px; }
+.rerror { padding: 32px; display: grid; gap: 16px; justify-items: start; color: var(--fg); background: var(--bg); min-height: 100%; }
+
+.rmenu { position: absolute; top: 0; left: 0; right: 0; z-index: 5; max-height: 92%; overflow: auto; display: grid; gap: 16px; padding: 14px 16px 18px; background: var(--bg); color: var(--fg); border-bottom: 3px solid var(--line); }
+.menu-row { display: grid; gap: 6px; }
+.menu-body { display: grid; gap: 6px; }
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.zoom { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.zoom-input { width: 5.5em; min-height: 52px; text-align: center; font-size: 22px; font-weight: 700; border: 3px solid var(--line); border-radius: 6px; background: var(--bg); }
+.tracks { display: grid; gap: 2px; }
+.setnav { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+
+/* ---------- Dokumente ---------- */
+.gp-clip { overflow: hidden; width: 100%; }
+.gp-host { width: 100%; }
+.pdf-doc { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px; width: max-content; min-width: 100%; }
+.pdf-doc canvas { display: block; background: #fff; border: 1px solid #888; }
+.pdf-doc.mode-page { padding: 8px; }
+.doc-warm canvas { filter: sepia(0.25) brightness(0.97); }
+.doc-dark canvas { filter: invert(1); }
+:root[data-theme='eink'] .doc-white canvas, :root[data-theme='eink'] .doc-warm canvas { filter: grayscale(1) contrast(1.2); }
+:root[data-theme='eink'] .doc-dark canvas { filter: grayscale(1) contrast(1.2) invert(1); }
+
+@media (max-width: 640px) {
+  :root { font-size: 17px; }
+  h1 { font-size: 27px; }
+  .rtitle { display: none; }
+}
