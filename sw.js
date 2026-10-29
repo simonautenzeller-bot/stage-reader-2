@@ -1,5 +1,5 @@
 // Version bei jeder Auslieferung erhöhen, damit alte Caches verschwinden.
-const CACHE = 'stage-reader-2.0.0';
+const CACHE = 'stage-reader-2.0.1';
 const SHELL = [
   './', './index.html', './manifest.json', './css/styles.css',
   './js/main.js', './js/util.js', './js/db.js', './js/libs.js', './js/dialogs.js', './js/logic.js', './js/files.js', './js/importer.js',

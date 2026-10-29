@@ -34,13 +34,18 @@ test('fitSystems zählt nur vollständig sichtbare Zeilen, die erste immer', () 
   assert.equal(fitSystems([], 600), null);
 });
 
-test('Vorwärts: letzter sichtbarer Takt wird zum ersten der nächsten Seite', () => {
+test('Vorwärts: der Takt nach dem letzten sichtbaren wird zum ersten der nächsten Seite', () => {
   const pager = new BarPager(40);
   const page1 = fitSystems([system(0, 200, 0, 3), system(200, 400, 4, 7), system(400, 600, 8, 11)], 450);
-  assert.equal(pager.forward(page1), 7);
-  const page2 = fitSystems([system(0, 200, 7, 10), system(200, 400, 11, 14)], 450);
-  assert.equal(pager.forward(page2), 14);
-  assert.equal(pager.start, 14);
+  assert.equal(pager.forward(page1), 8);
+  const page2 = fitSystems([system(0, 200, 8, 11), system(200, 400, 12, 15)], 450);
+  assert.equal(pager.forward(page2), 16);
+  assert.equal(pager.start, 16);
+});
+
+test('Unten rechts Takt 30 -> oben links Takt 31 (0-basiert 29 -> 30)', () => {
+  const pager = new BarPager(60, 22);
+  assert.equal(pager.forward({ count: 3, firstBar: 22, lastBar: 29, bottom: 400, complete: false }), 30);
 });
 
 test('Vorwärts am Ende bleibt stehen, bei einem einzigen Takt geht es trotzdem weiter', () => {
@@ -48,19 +53,22 @@ test('Vorwärts am Ende bleibt stehen, bei einem einzigen Takt geht es trotzdem 
   assert.equal(pager.forward(fitSystems([system(0, 200, 0, 11)], 450)), null);
   const tiny = new BarPager(12, 3);
   assert.equal(tiny.forward({ count: 1, firstBar: 3, lastBar: 3, bottom: 900, complete: false }), 4);
+  const lastPage = new BarPager(12, 8);
+  assert.equal(lastPage.forward({ count: 1, firstBar: 8, lastBar: 10, bottom: 400, complete: false }), 11);
 });
 
 test('Zurück nutzt die Seitenhistorie, sonst eine Schätzung', () => {
   const pager = new BarPager(60);
   const page = fitSystems([system(0, 200, 0, 3), system(200, 400, 4, 7)], 450);
   pager.forward(page);
-  pager.forward({ ...page, firstBar: 7, lastBar: 14 });
-  assert.equal(pager.back(page), 7);
+  pager.forward({ ...page, firstBar: 8, lastBar: 15 });
+  assert.equal(pager.start, 16);
+  assert.equal(pager.back(page), 8);
   assert.equal(pager.back(page), 0);
   assert.equal(pager.back(page), null);
 
   const restored = new BarPager(60, 20);
-  assert.equal(restored.back({ firstBar: 20, lastBar: 27 }), 13);
+  assert.equal(restored.back({ firstBar: 20, lastBar: 27 }), 12);
   restored.jump(2);
   assert.equal(restored.back({ firstBar: 2, lastBar: 9 }), 0);
 });

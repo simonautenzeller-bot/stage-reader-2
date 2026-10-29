@@ -11,13 +11,15 @@ auf GitHub Pages veröffentlichen.
   kein weiches Scrollen. Noten und Tabulatur werden rein schwarz gezeichnet, PDFs in Graustufen mit mehr Kontrast.
   Umschaltbar auf Hell/Dunkel unter *Einstellungen*.
 - **Guitar Pro – bar-genaues Blättern**: Vorwärts tippen zeigt als Nächstes eine Seite, die mit dem Takt beginnt,
-  der vorher **unten rechts als letzter sichtbar** war (er steht dann oben links). Zurück nutzt dieselben
-  Seitengrenzen. Angezeigt wird immer nur, was komplett auf den Bildschirm passt (keine halb abgeschnittene Zeile).
+  der **direkt nach dem zuletzt unten rechts sichtbaren** kommt (war unten rechts Takt 30, steht oben links Takt 31).
+  Zurück nutzt dieselben Seitengrenzen. Angezeigt wird immer nur, was komplett auf den Bildschirm passt
+  (keine halb abgeschnittene Zeile).
 - **Spurauswahl** (Guitar Pro): im Menü beliebige Spuren an-/abwählen, dazu *Noten / Tabulatur / Beides* und
   *Takte pro Zeile* (Auto oder 1–6). Standard ist die erste Spur.
 - **Zoom per Eintippen**: Prozentzahl im Menü eintippen und mit Enter bestätigen (oder Feld verlassen).
   Es wird nichts übernommen, solange du tippst. Dazu − / + (10-%-Schritte) und *Standard*.
-  Guitar Pro startet mit 120 %. Bei PDFs bedeutet 100 % „Seite passt komplett ins Fenster“.
+  Guitar Pro startet mit 70 % (gilt für neu importierte Songs; bei bereits importierten den Knopf *Standard* im Menü
+  antippen). Bei PDFs bedeutet 100 % „Seite passt komplett ins Fenster“.
 - **PDF**: Seite, Halbe Seite (Schrittweite einstellbar) und Endlos; bei vergrößerter Seite blättert Tippen erst
   durch die Seite und dann zur nächsten.
 - **Blättern**: links/rechts auf den Bildschirm tippen, Pfeiltasten, Bild auf/ab, Leertaste. Das Menü ist ein

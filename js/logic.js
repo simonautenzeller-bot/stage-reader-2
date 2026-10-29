@@ -2,7 +2,7 @@
 
 export const ZOOM_MIN = 0.25;
 export const ZOOM_MAX = 4;
-export const DEFAULT_ZOOM = { pdf: 1, 'guitar-pro': 1.2 };
+export const DEFAULT_ZOOM = { pdf: 1, 'guitar-pro': 0.7 };
 
 export const clampZoom = (value) => Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, value));
 
@@ -83,7 +83,8 @@ export function fitSystems(systems, height) {
 
 /**
  * Zustandsautomat für die Seitenwechsel: Beim Vorwärtsblättern beginnt die neue Seite
- * mit dem Takt, der vorher unten rechts als letzter sichtbar war (er steht dann oben links).
+ * mit dem Takt direkt nach dem, der vorher unten rechts als letzter sichtbar war
+ * (war unten rechts Takt 30, steht oben links Takt 31).
  */
 export class BarPager {
   constructor(totalBars, start = 0) {
@@ -95,7 +96,7 @@ export class BarPager {
   /** fit = Ergebnis von fitSystems für die aktuelle Seite. Liefert den neuen Starttakt oder null am Ende. */
   forward(fit) {
     if (!fit || fit.lastBar >= this.total - 1) return null;
-    const next = Math.max(fit.lastBar, this.start + 1);
+    const next = fit.lastBar + 1;
     this.history.push(this.start);
     this.start = next;
     return next;
@@ -104,7 +105,7 @@ export class BarPager {
   back(fit) {
     if (this.start <= 0) return null;
     const visible = fit ? Math.max(1, fit.lastBar - fit.firstBar + 1) : 4;
-    const previous = this.history.length ? this.history.pop() : Math.max(0, this.start - Math.max(1, visible - 1));
+    const previous = this.history.length ? this.history.pop() : Math.max(0, this.start - visible);
     this.start = previous;
     return previous;
   }
