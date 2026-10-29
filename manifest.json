@@ -2,7 +2,7 @@
   "name": "Stage Reader",
   "short_name": "Stage Reader",
   "description": "Lokaler Offline-Reader für PDF-Noten, Guitar-Pro-Dateien und Setlisten.",
-  "id": "./",
+  "id": "/stage-reader-2/",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
